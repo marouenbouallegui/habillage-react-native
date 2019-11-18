@@ -14,6 +14,7 @@ import {
   Button, CheckBox, Header, Icon, Picker, SearchBar, Card,
 } from 'react-native-elements'
 import { Dropdown } from 'react-native-material-dropdown';
+import MainTabNavigator from '../navigation/MainTabNavigator';
 let data = [{
   value: 'NON',
 }, {
@@ -32,10 +33,7 @@ export default class NewEnquetteScreen extends React.Component {
   render() {
     return (
       <View>
-        <Header
-          placement="left"
-          centerComponent={{ text: ' Neuvelle enquete', style: { color: '#fff' } }}
-        />
+        
         <Card title="Camion details">
           
           <Text style={{ fontSize: 18, color: "#3399ff", textAlign: "center" }}>{"\n"}Choisir la  matricule du camion{"\n"}</Text>
@@ -65,7 +63,7 @@ export default class NewEnquetteScreen extends React.Component {
                 name='minus-circle'
                 type='font-awesome'
                 color='#e62e00'
-                onPress={() => console.log('hello')} />
+                onPress={() =>  this.props.navigation.navigate('MainTabNavigator')} />
             </View>
           </View>
         </Card>

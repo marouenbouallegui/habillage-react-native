@@ -13,11 +13,7 @@ import {
 import {
   Button, ListItem, Header, Icon, SocialIcon, SearchBar
 } from 'react-native-elements'
-import type { NavigationEventSubscription } from 'react-navigation';
 
-type Props = {|
-  navigation: NewEnquetteScreen,
-|};
 
 var list = [
   {
@@ -51,7 +47,7 @@ function newEnquette() {
   )
 }
 
-const {navigate} = this.props.navigation;
+
 export default class EnquetteListScreen extends React.Component {
  // const {navigate} = this.props.navigation;
   state = {
@@ -61,11 +57,7 @@ export default class EnquetteListScreen extends React.Component {
     return (
       <View>
         <ScrollView >
-          <Header
-            placement="left"
-            centerComponent={{ text: ' Enquette Liste', style: { color: '#fff' } }}
-          />
-
+          
           {
             list.map((l, i) => (
               <ListItem
@@ -79,8 +71,8 @@ export default class EnquetteListScreen extends React.Component {
           }
 
           <Button
-            title="Go to Jane's profile"
-            onPress={() =>  navigation.navigate('NewEnquetteScreen', { name: 'Jane' })}
+            title="nouvelle Enquete"
+            onPress={() =>  this.props.navigation.navigate('NewEnquette')}
           />
         </ScrollView>
       </View>

@@ -1,12 +1,19 @@
-import {createAppContainer,navigate} from 'react-native-navigation';
+import {createAppContainer,navigate} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import NewEnquetteScreen from '../screens/NewEnquetteScreen';
+import EnquetteListScreen from '../screens/EnquetteListScreen';
+import MainTabNavigator from '../navigation/MainTabNavigator';
 
-const EnquetteNavigator = createStackNavigator({
+const EnquetteListStack = createStackNavigator({
+  EnquetteList: {screen: EnquetteListScreen},
   NewEnquette: {screen: NewEnquetteScreen},
- 
+  MainTabNavigator: {screen: MainTabNavigator},
+},
+{
+  initialRouteName: 'EnquetteList',
 });
 
-const App = createAppContainer(EnquetteNavigator);
+
+const App = createAppContainer(EnquetteListStack);
 
 export default App;
