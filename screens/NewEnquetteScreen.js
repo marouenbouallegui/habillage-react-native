@@ -14,7 +14,7 @@ import {
   Button, CheckBox, Header, Icon, Picker, SearchBar, Card,
 } from 'react-native-elements'
 import { Dropdown } from 'react-native-material-dropdown';
-import MainTabNavigator from '../navigation/MainTabNavigator';
+
 let data = [{
   value: 'NON',
 }, {
@@ -36,17 +36,17 @@ export default class NewEnquetteScreen extends React.Component {
         
         <Card title="Camion details">
           
-          <Text style={{ fontSize: 18, color: "#3399ff", textAlign: "center" }}>{"\n"}Choisir la  matricule du camion{"\n"}</Text>
+        <Card><Text style={{ fontSize: 18, color: "#3399ff", textAlign: "center" }}>Choisir la  matricule du camion</Text></Card>
           <Dropdown
             label='matricule camion'
             data={camion}
           />
-          <Text style={{ fontSize: 18, color: "#3399ff", textAlign: "center" }}>{"\n"}Type d'enquete{"\n"}</Text>
+        <Card><Text style={{ fontSize: 18, color: "#3399ff", textAlign: "center" }}>Type d'enquete</Text></Card>
           <Dropdown
             label="Type d'enquete"
             data={camion}
           />
-          <Text style={{ fontSize: 18, color: "#3399ff", textAlign: "center" }}>{"\n"}camion accidenté ? {"\n"}</Text>
+          <Card ><Text style={{ fontSize: 18, color: "#3399ff", textAlign: "center" }}>camion accidenté ? </Text></Card>
 
           <View style={{  flexDirection: 'row' }}>
             <View style={{ width: "50%", alignItems: "center" }}>
@@ -55,7 +55,7 @@ export default class NewEnquetteScreen extends React.Component {
                 name='check'
                 type='font-awesome'
                 color='#00e600'
-                onPress={() => console.log('hello')} />
+                onPress={() => console.log(this.props.test)} />
             </View>
             <View style={{ width: "50%", alignItems: "center" }}>
               <Icon
