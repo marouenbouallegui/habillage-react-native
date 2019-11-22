@@ -5,11 +5,13 @@ import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+import Database from './core/database';
 import LoginScreen from './screens/LoginScreen';
+
+new Database();
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
-
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
       <AppLoading

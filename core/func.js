@@ -1,13 +1,11 @@
 import * as axios from 'axios';
 import GLOBAL_VARIABLES from './const';
-import Database from './database';
+import Audit from '../models/Audit';
 
 var instance = axios.create({
     baseURL: GLOBAL_VARIABLES.server.internalHost,
     timeout: 3000
 });
-
-var db = new Database();
 
 function ping() {
     /* instance.setBaseURL(GLOBAL_VARIABLES.server.internalHost); */
@@ -36,7 +34,9 @@ var AppService = {
         };
         console.log(ping());
         console.log(data);
-        
+        console.log(GLOBAL_VARIABLES.database.instance);
+        new Audit().commit();
+
         return instance.post('/session.p', data)
             .then(response => {
                 console.log(response);
