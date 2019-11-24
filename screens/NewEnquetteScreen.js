@@ -33,37 +33,39 @@ export default class NewEnquetteScreen extends React.Component {
   render() {
     return (
       <View>
-        
+
         <Card title="Camion details">
-          
-        <Card><Text style={{ fontSize: 18, color: "#3399ff", textAlign: "center" }}>Choisir la  matricule du camion</Text></Card>
+
+          <Card><Text style={{ fontSize: 18, color: "#3399ff", textAlign: "center" }}>Choisir la  matricule du camion</Text></Card>
           <Dropdown
             label='matricule camion'
             data={camion}
           />
-        <Card><Text style={{ fontSize: 18, color: "#3399ff", textAlign: "center" }}>Type d'enquete</Text></Card>
+          <Card><Text style={{ fontSize: 18, color: "#3399ff", textAlign: "center" }}>Type d'enquete</Text></Card>
           <Dropdown
             label="Type d'enquete"
             data={camion}
           />
           <Card ><Text style={{ fontSize: 18, color: "#3399ff", textAlign: "center" }}>camion accidenté ? </Text></Card>
 
-          <View style={{  flexDirection: 'row' }}>
+          <View style={{ flexDirection: 'row' }}>
             <View style={{ width: "50%", alignItems: "center" }}>
               <Icon style={{}}
+
+
                 raised
-                name='check'
+                name='minus-circle'
                 type='font-awesome'
-                color='#00e600'
+                color='#e62e00'
                 onPress={() => console.log(this.props.test)} />
             </View>
             <View style={{ width: "50%", alignItems: "center" }}>
               <Icon
                 raised
-                name='minus-circle'
+                name='check'
                 type='font-awesome'
-                color='#e62e00'
-                onPress={() =>  this.props.navigation.navigate('MainTabNavigator')} />
+                color='#00e600'
+                onPress={() => this.props.navigation.navigate('MainTabNavigator')} />
             </View>
           </View>
         </Card>

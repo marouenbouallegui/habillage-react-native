@@ -1,14 +1,97 @@
-import {  Text,Platform } from 'react-native';
+
+import { Text, Platform,Switch } from 'react-native';
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { View,AppRegistry,ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { RNCamera } from 'react-native-camera';
+import {
+  ListItem,Button, CheckBox, Header, Icon, Picker, SearchBar, Card,
+} from 'react-native-elements'
+import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 const title="Face 1";
-export default function FaceS2creen() {
+var questions =[
+  {
+    question:"test 1 ?",
+    propostionNamber:3
+  },
+  {
+    question:"test 2 ?",
+    propostionNamber:3
+  }
+];
+var radio_props = [
+  {label: 'A', value: 'A' ,buttonColor:"red"},
+  {label: 'B', value: 'B' },
+  {label: 'C', value: 'C' },
+  {label: 'D', value: 'D' }
+
+];
+
+export default class Face2Screen extends React.Component {
+  
+  
+  constructor(){
+ 
+    super();
+ 
+    this.state ={
+       status:true
+ 
+    }
+  }
+ 
+ShowHideTextComponentView = () =>{
+ 
+  if(this.state.status == true)
+  {
+    this.setState({status: false})
+  }
+  else
+  {
+    this.setState({status: true})
+  }
+}
+ 
+  render() {
+  
     return (
-      <ScrollView >
-          <Text>face 2</Text>
+ 
+      <View style={styles.MainContainer}>
+       <Card >
+       <ListItem style= {{ fontSize: 25, color: "#000", textAlign: 'center' }} title="test test"/>
+       <Switch
+         onValueChange = {this.ShowHideTextComponentView}
+         value = {this.state.status}/>
+        </Card> 
         {
-          
-        }
-        </ScrollView>
+        
+        this.state.status ? (
+        <Card title="Camion details">
+          {
+            questions.map((l, i) => (
+              <View key={i} >
+              <ListItem style= {{ fontSize: 25, color: "#000", textAlign: 'center' }}  bottomDivider title={l.question}/>
+              <RadioForm radio_props={radio_props}
+          initial={0}
+          onPress={(value) => {this.setState({value:value})}}
+          formHorizontal={true}
+        /></View>
+            ))
+          }
+         
+        </Card>): null
+      }
+ 
+     
+      
+      </View>
     );
   }
+}
+ 
+const styles = StyleSheet.create({
+ 
+
+ 
+});
+ 
+AppRegistry.registerComponent('FaceS1creen', () => FaceS1creen);
