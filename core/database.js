@@ -103,8 +103,9 @@ export default class Database {
             console.log("Checking Truck table exists...");
             tx.executeSql(
                 'SELECT 1 FROM Truck LIMIT 1', [],
-                (result) => {
+                (tx, result) => {
                     console.log("Truck table exist!");
+                    console.log(result);
                 },
                 (error) => {
                     console.log("Truck table not exist!");

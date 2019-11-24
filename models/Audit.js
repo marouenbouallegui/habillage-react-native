@@ -1,4 +1,5 @@
 import GLOBAL_VARIABLES from '../core/const';
+
 export default class Audit {
 
     constructor(_id, _effectiveDate, _auditor, _model, _truck, _status) {
@@ -39,10 +40,10 @@ export default class Audit {
                     ((audit.truck == '') ? '' : ' and truck = "' + audit.truck + '"') +
                     ((audit.status == '') ? '' : ' and status = ' + audit.status), [],
                     (result) => {
-                        console.log("Audit table exist!");
+                        console.log(result);
                     },
                     (error) => {
-                        console.log("not exist!");
+                        console.log(error);
                     }
                 );
             });

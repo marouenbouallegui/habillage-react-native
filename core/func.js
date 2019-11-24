@@ -1,22 +1,22 @@
 import * as axios from 'axios';
 import GLOBAL_VARIABLES from './const';
 import Audit from '../models/Audit';
+import TruckList from '../models/TruckList';
 
-var instance = axios.create({
+var axiosInstance = axios.create({
     baseURL: GLOBAL_VARIABLES.server.internalHost,
     timeout: 3000
 });
 
-function ping() {
-    /* instance.setBaseURL(GLOBAL_VARIABLES.server.internalHost); */
-    var hostURL = GLOBAL_VARIABLES.server.internalHost;
-    instance.get('/ping.p')
-        .then()
+function ping(callback) {
+    axiosInstance.get('/ping.p')
+        .then(() => {
+            callback(GLOBAL_VARIABLES.server.internalHost);
+        })
         .catch(error => {
             console.log(error);
-            hostURL = GLOBAL_VARIABLES.server.externalHost
+            callback(GLOBAL_VARIABLES.server.externalHost);
         });
-    return hostURL;
 }
 
 var AppService = {
@@ -32,19 +32,52 @@ var AppService = {
                 }]
             }
         };
-        console.log(ping());
-        console.log(data);
-        console.log(GLOBAL_VARIABLES.database.instance);
+        /*console.log(data);*/
         new Audit().commit();
-
-        return instance.post('/session.p', data)
-            .then(response => {
-                console.log(response);
-
-            })
-            .catch(error => console.log(error));
+        ping(function(hostURL) {
+            console.log(hostURL);
+            axiosInstance.interceptors.request.use(
+                (config) => {
+                    config.baseURL = hostURL;
+                    return config;
+                },
+                (error) => {
+                    Promise.reject(error);
+                }
+            );
+            axiosInstance.post('/session.p', data)
+                .then(response => {
+                    console.log(response.data);
+                    if (response.data.ProDataSet) {
+                        var resp = response.data.ProDataSet;
+                        var truckList = new TruckList();
+                        if (resp.tt_allcamion) {
+                            resp.tt_allcamion.forEach(function(truck) {
+                                truckList.add({
+                                    id: resp.tt_allcamion[0].im_camion,
+                                    type: resp.tt_allcamion[0].type,
+                                    brand: resp.tt_allcamion[0].marque,
+                                    planned: false
+                                }, true);
+                            });
+                        }
+                        if (resp.tt_camion) {
+                            resp.tt_camion.forEach(function(truck) {
+                                truckList.add({
+                                    id: resp.tt_camion[0].im_camion,
+                                    type: resp.tt_camion[0].type,
+                                    brand: resp.tt_camion[0].marque,
+                                    planned: true
+                                }, true);
+                            });
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        });
     },
-
 };
 
 export default AppService;

@@ -17,10 +17,10 @@ export default class Audit {
     }
 
     add(audit, commit) {
-        this.list.push(audit);
         if (commit) {
 
         }
+        this.list.push(audit);
     }
 
     remove(index, commit) {

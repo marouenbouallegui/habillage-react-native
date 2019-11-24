@@ -1,8 +1,8 @@
 
-import { Text, Platform,Switch } from 'react-native';
+import { Text, Platform, Switch } from 'react-native';
 import React from 'react';
-import { View,AppRegistry,ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
-import { RNCamera } from 'react-native-camera';
+import { View, AppRegistry, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+/*import { RNCamera } from 'react-native-camera';*/
 import {
   ListItem,Button, CheckBox, Header, Icon, Picker, SearchBar, Card,
 } from 'react-native-elements'
@@ -38,23 +38,21 @@ export default class Face1Screen extends React.Component {
  
     }
   }
- 
-ShowHideTextComponentView = () =>{
- 
-  if(this.state.status == true)
-  {
-    this.setState({status: false})
+
+  ShowHideTextComponentView = () => {
+
+    if (this.state.status == true) {
+      this.setState({ status: false })
+    }
+    else {
+      this.setState({ status: true })
+    }
   }
-  else
-  {
-    this.setState({status: true})
-  }
-}
- 
+
   render() {
-  
+
     return (
- 
+
       <View style={styles.MainContainer}>
        <Card >
        <ListItem style= {{ fontSize: 25, color: "#000", textAlign: 'center' }} title="test test"/>
@@ -87,11 +85,11 @@ ShowHideTextComponentView = () =>{
     );
   }
 }
- 
-const styles = StyleSheet.create({
- 
 
- 
+const styles = StyleSheet.create({
+
+
+
 });
- 
+
 AppRegistry.registerComponent('FaceS1creen', () => FaceS1creen);
